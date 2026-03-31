@@ -81,6 +81,18 @@ export default function Footer({ footer }: { footer: FooterType }) {
                   pixmind.service@aimix.pro
                 </a>
               )}
+              <span className="mx-1">|</span>
+              <span className="text-xs">
+                Powered by{" "}
+                <a
+                  href="https://www.pixmind.io/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-primary"
+                >
+                  Pixmind
+                </a>
+              </span>
             </div>
 
             {footer.agreement && (

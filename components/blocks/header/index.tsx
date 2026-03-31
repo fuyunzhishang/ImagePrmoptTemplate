@@ -49,6 +49,7 @@ export default function Header({ header }: { header: HeaderType }) {
   const [isSticky, setIsSticky] = useState(false);
   const { data: session, status } = useSession();
   const t = useTranslations("user");
+  const tHeader = useTranslations("header");
 
   // 调试：打印 session 信息
   useEffect(() => {
@@ -107,7 +108,7 @@ export default function Header({ header }: { header: HeaderType }) {
               {header.brand?.logo?.src && (
                 <img
                   src={header.brand.logo.src}
-                  alt="ImagetoPrompt"
+                  alt="Pixmind"
                   className="w-8"
                   style={{width: '145px', height: '45px'}}
                 />
@@ -243,6 +244,14 @@ export default function Header({ header }: { header: HeaderType }) {
                   })}
                 </NavigationMenuList>
               </NavigationMenu>
+              <a
+                href="https://www.pixmind.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground font-medium hover:text-primary transition-colors px-4 py-2 text-sm"
+              >
+                {tHeader("official_site")}
+              </a>
             </div>
           </div>
           <div className="shrink-0 flex gap-2 items-center">
@@ -333,7 +342,7 @@ export default function Header({ header }: { header: HeaderType }) {
               {header.brand?.logo?.src && (
                 <img
                   src={header.brand.logo.src}
-                  alt="ImagetoPrompt"
+                  alt="Pixmind"
                   style={{width: '150px'}}
                 />
               )}
@@ -359,7 +368,7 @@ export default function Header({ header }: { header: HeaderType }) {
                       {header.brand?.logo?.src && (
                         <img
                           src={header.brand.logo.src}
-                          alt="ImagetoPrompt"
+                          alt="Pixmind"
                           style={{width: '150px'}}
                         />
                       )}
@@ -470,6 +479,14 @@ export default function Header({ header }: { header: HeaderType }) {
                       );
                     })}
                   </Accordion>
+                  <a
+                    href="https://www.pixmind.io/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold my-4 flex items-center gap-2 px-4"
+                  >
+                    {tHeader("official_site")}
+                  </a>
                 </div>
                 <div className="flex-1"></div>
                 <div className="border-t pt-4">

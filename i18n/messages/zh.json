@@ -5,8 +5,11 @@
     "next": "下一页",
     "page_info": "第 {{current}} 页，共 {{total}} 页"
   },
+  "header": {
+    "official_site": "官网"
+  },
   "metadata": {
-    "title": "Image to Prompt Generator - AI图像转提示词生成器",
+    "title": "Pixmind AI Agent - AI图像生成与分析平台",
     "description": "免费在线AI图像转提示词生成器,支持Midjourney、DALL-E、Stable Diffusion等平台。快速将图像转换为详细提示词。",
     "keywords": "图像转提示词, AI提示词生成器, Midjourney提示词, DALL-E提示词, Stable Diffusion, 图片转文本, AI艺术"
   },
@@ -1508,6 +1511,11 @@
     "effects": {
       "title": "使用这些热门的 AI 视频效果将文本和图像转换为视频",
       "description": "Pixmind AI 提供各种创新的 AI 视频效果，包括 AI Kiss、AI Hug、AI Inflate 等。现在就使用这些热门的 AI 视频生成器释放您的创造力！"
+    },
+    "cta": {
+      "title": "需要更多功能？",
+      "description": "商业版提供更强大的 AI 能力、优先技术支持和白标定制方案。加入代理商计划，无需技术基础即可分销 AI SaaS 产品。",
+      "button": "访问 Pixmind"
     }
   },
   "affiliate": {

@@ -4,7 +4,7 @@ This file provides comprehensive guidance to AI assistants (like Claude Code) wh
 
 ## Project Overview
 
-This is an **AI Image Generation SaaS Template** - a production-ready Next.js 15 application that demonstrates how to build a modern AI-powered image generation service. It serves as both a learning resource and a foundation for building commercial AI SaaS applications.
+This is a **Pixmind AI Agent SaaS Template** - a production-ready Next.js 15 application that demonstrates how to build a modern AI-powered image generation service. It serves as both a learning resource and a foundation for building commercial AI SaaS applications.
 
 **Key Characteristics:**
 - Educational template showcasing AI integration best practices

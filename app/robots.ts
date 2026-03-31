@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_WEB_URL || 'https://www.deepvideo.pro/'
+  const baseUrl = process.env.NEXT_PUBLIC_WEB_URL || 'https://www.pixmind.io/'
 
   return {
     rules: [

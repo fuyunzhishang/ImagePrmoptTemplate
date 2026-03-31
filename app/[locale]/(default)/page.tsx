@@ -164,6 +164,27 @@ export default async function LandingPage({
         </div>
       </section>
 
+      {/* CTA Section */}
+      <section className="container mx-auto px-4 py-12">
+        <div className="max-w-3xl mx-auto text-center bg-card border border-border rounded-2xl p-8 md:p-12">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+            {t("cta.title")}
+          </h2>
+          <p className="text-muted-foreground mb-8 leading-relaxed">
+            {t("cta.description")}
+          </p>
+          <a
+            href="https://www.pixmind.io/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button size="lg" className="rounded-full px-8">
+              {t("cta.button")}
+            </Button>
+          </a>
+        </div>
+      </section>
+
       {/* FAQ Section */}
       <FAQSection
         title={t("faq.title")}

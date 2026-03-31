@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { locales } from '@/i18n/locale'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_WEB_URL || 'https://yourdomain.com'
+  const baseUrl = process.env.NEXT_PUBLIC_WEB_URL || 'https://www.pixmind.io'
 
   // 静态页面列表
   const staticPages = [

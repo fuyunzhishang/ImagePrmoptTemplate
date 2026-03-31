@@ -1,8 +1,20 @@
-# AI Image Generation SaaS Template
+# Pixmind AI Agent SaaS Template
+
+**[中文文档](./README.zh-CN.md)** | **English**
+
+> **[Visit Pixmind Official Site](https://www.pixmind.io/)** - The complete AI platform for image generation, video creation, and more.
 
 A production-ready Next.js 15 SaaS template for building AI-powered image generation applications. Ship your AI startup in hours, not weeks.
 
 ![preview](preview.png)
+
+## Open Source vs Commercial
+
+This is the **open-source version** of the Pixmind AI Agent template, perfect for developers who want to build their own AI SaaS application.
+
+**Looking for more?**
+- **Commercial Version** - Includes advanced features, priority support, and white-label options. [Contact us](https://www.pixmind.io/) for details.
+- **Agency / Reseller Program** - Want to distribute AI SaaS solutions without technical overhead? Join our program and start selling. [Learn more](https://www.pixmind.io/).
 
 ## 🚀 Features
 
@@ -220,7 +232,7 @@ docker run -p 3000:3000 ai-image-saas:latest
 | `EVOLINK_API_URL` | Evolink API base URL | `https://api.evolink.ai` |
 | `STORAGE_DOMAIN` | Custom R2 domain (optional) | - |
 | `NEXT_PUBLIC_WEB_URL` | Your website URL | `http://localhost:3006` |
-| `NEXT_PUBLIC_PROJECT_NAME` | Project display name | `AI Image SaaS` |
+| `NEXT_PUBLIC_PROJECT_NAME` | Project display name | `Pixmind AI Agent` |
 | `NEXT_PUBLIC_GOOGLE_ANALYTICS_ID` | Google Analytics tracking ID | - |
 | `NEXT_PUBLIC_CLARITY_ID` | Microsoft Clarity tracking ID | - |
 | `STRIPE_PUBLIC_KEY` | Stripe publishable key | - |
@@ -277,4 +289,4 @@ This project is licensed under the terms specified in the [LICENSE](LICENSE) fil
 
 ---
 
-Built with ❤️ using Next.js 15 and modern web technologies
+Built with Next.js 15 and modern web technologies. Powered by [Pixmind](https://www.pixmind.io/).

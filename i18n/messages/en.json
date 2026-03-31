@@ -5,8 +5,11 @@
     "next": "Next",
     "page_info": "Page {{current}} of {{total}}"
   },
+  "header": {
+    "official_site": "Official Site"
+  },
   "metadata": {
-    "title": "Pixmind - AI Image Generation & Analysis Platform",
+    "title": "Pixmind AI Agent - AI Image Generation & Analysis Platform",
     "description": "Transform images into detailed prompts and generate stunning AI images. Professional AI tools for image analysis and creation.",
     "keywords": "Pixmind, AI image generation, image analysis, text to image, image to text, AI art, prompt generator"
   },
@@ -1360,6 +1363,11 @@
     "effects": {
       "title": "Transform Text & Images into Videos with These Trending AI Video Effects",
       "description": "Pixmind AI provides a variety of innovative AI video effects, including AI Kiss, AI Hug, AI Inflate, and more. Unleash your creativity now with these trending AI video generators!"
+    },
+    "cta": {
+      "title": "Need More Features?",
+      "description": "The commercial version offers advanced AI capabilities, priority support, and white-label options. Join our agency program to distribute AI SaaS solutions without technical overhead.",
+      "button": "Visit Pixmind"
     }
   },
   "affiliate": {
