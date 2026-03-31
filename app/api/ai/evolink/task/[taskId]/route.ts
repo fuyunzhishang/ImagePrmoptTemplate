@@ -43,7 +43,9 @@ export async function GET(
           taskData.results.map(async (resultUrl: string, index: number) => {
             try {
               // 从 URL 提取文件扩展名
-              const extension = resultUrl.split('.').pop()?.split('?')[0] || 'png';
+              const urlPath = new URL(resultUrl).pathname;
+              const extMatch = urlPath.match(/\.(\w+)$/);
+              const extension = extMatch ? extMatch[1] : 'png';
 
               // 生成存储路径
               const now = new Date();

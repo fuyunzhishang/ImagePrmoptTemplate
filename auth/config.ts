@@ -158,7 +158,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             const initialCredits = parseInt(process.env.INITIAL_USER_CREDITS || "100");
             console.log("[NextAuth JWT] Creating initial credits:", initialCredits);
 
-            const creditRecord = await createUserCredits(dbUserRecord.uuid, initialCredits);
+            const creditRecord = dbUserRecord.uuid ? await createUserCredits(dbUserRecord.uuid, initialCredits) : null;
             if (creditRecord) {
               console.log("[NextAuth JWT] ✅ Initial credits created successfully!");
               console.log("[NextAuth JWT] Credits balance:", creditRecord.balance);

@@ -61,7 +61,7 @@ export async function POST(request: NextRequest) {
     }
 
     const requestBody: Record<string, any> = {
-      model: 'nano-veo-3.1',  // Using Veo 3.1 model
+      model: 'veo3.1-fast',  // Using Veo 3.1 model
       prompt,
       duration,
       resolution,

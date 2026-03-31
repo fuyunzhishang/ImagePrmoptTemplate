@@ -110,6 +110,7 @@ export default function TextToImagePage() {
   const [model, setModel] = useState("standard");
   const [aspectRatio, setAspectRatio] = useState("1:1");
   const [isGenerating, setIsGenerating] = useState(false);
+  const [generationProgress, setGenerationProgress] = useState(0);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const [models, setModels] = useState<ImageModel[]>([]);
   const [isLoadingModels, setIsLoadingModels] = useState(false);
@@ -417,6 +418,7 @@ export default function TextToImagePage() {
 
     setIsGenerating(true);
     setGeneratedImage(null);
+    setGenerationProgress(0);
 
     try {
       // 如果是 nano-banana 模型，使用 Evolink API
@@ -474,8 +476,13 @@ export default function TextToImagePage() {
 
           const taskData = statusResult.data;
 
+          if (taskData.progress !== null && taskData.progress !== undefined) {
+            setGenerationProgress(taskData.progress);
+          }
+
           if (taskData.status === 'completed' && taskData.results && taskData.results.length > 0) {
             console.log('[Evolink] 生成完成，图片URL:', taskData.results[0]);
+            setGenerationProgress(100);
             setGeneratedImage(taskData.results[0]);
             toast.success(t('generation_success'));
             return;
@@ -828,7 +835,16 @@ export default function TextToImagePage() {
                   {isGenerating ? (
                     <div className="text-center">
                       <div className="w-16 h-16 border-4 border-purple-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-                      <p className="text-muted-foreground">Generating your image...</p>
+                      <p className="text-muted-foreground mb-3">Generating your image...</p>
+                      <div className="w-full max-w-xs mx-auto">
+                        <div className="h-2 bg-muted rounded-full overflow-hidden">
+                          <div
+                            className="h-full bg-purple-600 rounded-full transition-all duration-500"
+                            style={{ width: `${generationProgress}%` }}
+                          />
+                        </div>
+                        <p className="text-sm text-muted-foreground mt-1">{generationProgress}%</p>
+                      </div>
                     </div>
                   ) : generatedImage ? (
                     <div className="w-full">
