@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations, useLocale } from 'next-intl';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -199,7 +199,7 @@ export function Profile() {
   const [ordersTotalPages, setOrdersTotalPages] = useState(1);
 
   // 获取积分交易记录 - 从 Supabase 数据库查询
-  const fetchTransactions = async (page: number = 1) => {
+  const fetchTransactions = useCallback(async (page: number = 1) => {
     if (!session?.user) {
       return;
     }
@@ -240,7 +240,7 @@ export function Profile() {
     } finally {
       setLoadingTransactions(false);
     }
-  };
+  }, [session?.user]);
 
   // 获取所有订单
   const fetchAllOrders = async (page: number = 1) => {
@@ -315,7 +315,7 @@ export function Profile() {
     } else if (activeTab === 'member-orders' || activeTab === 'points-orders') {
       fetchAllOrders(ordersCurrentPage);
     }
-  }, [activeTab, currentPage, ordersCurrentPage, isLoggedIn]);
+  }, [activeTab, currentPage, ordersCurrentPage, isLoggedIn, fetchTransactions]);
 
   // 正在检查登录状态或未登录 - 显示加载中（因为会立即重定向）
   if (isCheckingAuth || !isLoggedIn) {

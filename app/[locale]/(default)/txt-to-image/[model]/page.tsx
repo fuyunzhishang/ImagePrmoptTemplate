@@ -613,17 +613,47 @@ export default function TextToImagePage() {
         return;
       }
 
-      if (result.code === 1000 && result.data?.images && result.data.images.length > 0) {
-        const imageUrl = result.data.images[0];
-        setGeneratedI2IImage(imageUrl);
-        toast.success(t('generation_success'));
+      // 轮询任务状态
+      if (result.code === 1000 && result.data?.id) {
+        const taskId = result.data.id;
+        console.log('[ImageToImage] 任务ID:', taskId, '开始轮询');
+
+        const maxAttempts = 120;
+        const pollInterval = 2000;
+
+        for (let attempt = 0; attempt < maxAttempts; attempt++) {
+          await new Promise(resolve => setTimeout(resolve, pollInterval));
+
+          const statusResponse = await fetch(`/api/ai/evolink/task/${taskId}`);
+          const statusResult = await statusResponse.json();
+          console.log(`[ImageToImage] 轮询 ${attempt + 1}/${maxAttempts}, 状态:`, statusResult.data?.status);
+
+          if (statusResult.code !== 1000) {
+            throw new Error(statusResult.message || 'Task query failed');
+          }
+
+          const taskData = statusResult.data;
+
+          if (taskData.status === 'completed' && taskData.results && taskData.results.length > 0) {
+            console.log('[ImageToImage] 生成完成，图片URL:', taskData.results[0]);
+            setGeneratedI2IImage(taskData.results[0]);
+            toast.success(t('generation_success'));
+            return;
+          }
+
+          if (taskData.status === 'failed') {
+            throw new Error('Image generation failed');
+          }
+        }
+
+        throw new Error('Task timeout');
       } else {
         console.error('[ImageToImage] 生成失败:', result);
         toast.error(result.message || t('generation_failed'));
       }
     } catch (error) {
       console.error('[ImageToImage] 生成异常:', error);
-      toast.error(t('generation_error'));
+      toast.error((error as Error).message || t('generation_error'));
     } finally {
       setIsGeneratingI2I(false);
     }

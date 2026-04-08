@@ -5,7 +5,7 @@ import Credentials from "next-auth/providers/credentials";
 import { getUuid } from "@/lib/hash";
 import { getIsoTimestr } from "@/lib/time";
 import { getClientIp } from "@/lib/ip";
-import { findUserByEmail, insertUser } from "@/models/user";
+import { findUserByEmail, insertUser, updateUser } from "@/models/user";
 import { createUserCredits } from "@/models/credit";
 
 const GOOGLE_ENABLED = process.env.NEXT_PUBLIC_AUTH_GOOGLE_ENABLED === "true";
@@ -170,6 +170,22 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             console.log("[NextAuth JWT] User UUID:", dbUserRecord.uuid);
             console.log("[NextAuth JWT] User email:", dbUserRecord.email);
             console.log("[NextAuth JWT] User created at:", dbUserRecord.created_at);
+
+            // If provider returned a new avatar image, update it in DB
+            try {
+              if (user.image && user.image !== dbUserRecord.avatar_url) {
+                console.log("[NextAuth JWT] Detected new avatar image, updating DB...");
+                const updated = await updateUser(dbUserRecord.uuid as string, { avatar_url: user.image as string });
+                if (updated) {
+                  dbUserRecord = updated;
+                  console.log("[NextAuth JWT] ✅ Avatar updated in database");
+                } else {
+                  console.error("[NextAuth JWT] ❌ Failed to update avatar in database");
+                }
+              }
+            } catch (err) {
+              console.error("[NextAuth JWT] ❌ Error updating avatar:", err);
+            }
           }
 
           // Store user info in token (use database UUID for existing users)

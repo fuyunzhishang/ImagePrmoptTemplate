@@ -68,8 +68,22 @@ export async function GET(
               });
 
               log('[Evolink Task] 图片上传成功:', uploadResult);
+              log('[Evolink Task] R2 URL:', uploadResult.url);
 
-              return uploadResult.url;
+              // 尝试测试 R2 URL 是否可访问，如果不可访问则返回原始 URL
+              try {
+                const testResponse = await fetch(uploadResult.url, { method: 'HEAD' });
+                if (testResponse.ok) {
+                  log('[Evolink Task] R2 URL 可访问，使用 R2 URL');
+                  return uploadResult.url;
+                } else {
+                  log('[Evolink Task] R2 URL 不可访问，状态码: ' + testResponse.status + '，使用原始 URL');
+                  return resultUrl;
+                }
+              } catch (testError) {
+                log('[Evolink Task] R2 URL 测试失败，使用原始 URL', testError);
+                return resultUrl;
+              }
             } catch (uploadError: any) {
               logError('[Evolink Task] 图片上传失败:', uploadError);
               // 上传失败时返回原始 URL
